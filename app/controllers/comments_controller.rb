@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, :set_comment, only: [:show, :edit, :update, :destroy, :create]
 
   respond_to :html
 
@@ -13,17 +13,22 @@ class CommentsController < ApplicationController
   end
 
   def new
-    @comment = Comment.new
-    respond_with(@comment)
   end
 
   def edit
   end
 
   def create
-    @comment = Comment.new(comment_params)
-    @comment.save
-    respond_with(@comment)
+    @comment = @post.comments.build(comment_params)
+    @comment.user_id = current_user.id
+
+    if @comment.save
+      flash[:success] = "GG EZ"
+      redirect_to :back
+    else
+      flash[:alert] = "wtf man?"
+      render root_path
+    end
   end
 
   def update
@@ -32,16 +37,18 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = @post.comments.find(params[:id])
     @comment.destroy
-    respond_with(@comment)
+    flash[:success] = "Git out of here comment!"
+    redirect_to  root_path
   end
 
   private
     def set_comment
-      @comment = Comment.find(params[:id])
+      @post = Post.find(params[:post_id])
     end
 
     def comment_params
-      params.require(:comment).permit(:content, :post_id)
+      params.require(:comment).permit(:content, :image, :post_id, :user_id)
     end
 end

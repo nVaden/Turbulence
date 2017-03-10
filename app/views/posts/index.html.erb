@@ -1,31 +1,53 @@
-<h1>Listing posts</h1>
+        <h1 align="center">Stream Board</h1>
+      <div class="stream_board">
 
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Body</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+      <iframe
+    src="http://player.twitch.tv/?channel=dallas&muted=true"
+    height="720"
+    width="1280"
+    frameborder="0"
+    scrolling="no"
+    allowfullscreen="true">
+</iframe>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.subject %></td>
-        <td><%= post.body %></td>
-        <td><%= post.user %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @posts.reverse.each do |post| %>
+            <tr>
+              <td><%= image_tag post.user.image.url(:thumb) %></td>
+              <td><%= post.user.username %></td>
 
-<br>
+              <td><%= post.subject %></td>
 
-<%= link_to 'New Post', new_post_path %>
+              <td>posted <%= time_ago_in_words(post.created_at||Time.now) %> ago.</td>
+
+              <% if current_user && post.user.id == current_user.id %>
+              <td><%= link_to 'Show', post %></td>
+
+              <td><%= link_to 'Edit', edit_post_path(post) %></td>
+
+              <% else %>
+
+              <td><%= link_to 'Show', post %></td>
+
+              <% end %>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+      </div>
+
+      <br>
+      <!-- </div> -->
+
