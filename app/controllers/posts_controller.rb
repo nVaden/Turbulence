@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
-    respond_with(@posts)
   end
 
   def show
@@ -13,15 +12,14 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
-    respond_with(@post)
+    @post = current_user.posts.build
   end
 
   def edit
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
     @post.save
     respond_with(@post)
   end
@@ -33,7 +31,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    respond_with(@post)
+    redirect_to posts_path
   end
 
   private
@@ -42,6 +40,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:subject, :body, :user_id)
+      params.require(:post).permit(:subject, :channel, :user_id)
     end
+    
 end
