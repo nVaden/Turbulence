@@ -1,4 +1,12 @@
 <div class="form_post">
+
+    <div id="twitchPlayer"></div>
+
+  <form id="searchForm">
+    <input type="text" id="search" placeholder="Enter the name of the player you want to stream"/>
+    <input type="submit" value="Search"/>
+  </form>
+
   <%= form_for(@post) do |f| %>
   <% if @post.errors.any? %>
   <div id="error_explanation">
@@ -11,12 +19,15 @@
     </ul>
   </div>
   <% end %>
-  <div id="twitchPlayer"></div>
 
-  <form id="searchForm">
-    <input type="text" id="search" placeholder="Enter the name of the player you want to stream"/>
-    <input type="button" id="searchForm" value="Search"/>
-  </form>
+   <!-- ================================================ -->
+  <%= f.label :title %>
+  <%= f.text_field :subject %>
+  <%=  f.hidden_field :channel %>
+  <%= f.button :submit %>
+
+  <% end %>
+
 
 
   <!-- TWITCH API USAGE  -->
@@ -30,21 +41,21 @@
     };
     var player = new Twitch.Player("twitchPlayer", options);
     player.setVolume(0.5);
-    $("#searchForm").submit(function(event){
-      event.preventDefault();
-      var selection = $("#search").val();
-      console.log(selection);
-      player.setChannel(selection);
-    })
+    $(document).ready(function(){
+
+      console.log("Doc loaded, how bout that?!")
+      console.log($("#searchForm") )
+       $("#searchForm").submit(function(event){
+        console.log("submitted search!")
+        event.preventDefault();
+        var selection = $("#search").val();
+        console.log(selection);
+        player.setChannel(selection);
+      });
+    });
+
 
   </script>
 
-  <!-- ================================================ -->
-  <%= simple_form_for @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :subject %>
-  <%=  f.hidden_field :channel %>
-  <%= f.button :submit %>
-  <% end %>
-  <% end %>
+
 </div>
