@@ -1,50 +1,43 @@
-<div class="form_post">
-  <%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-  <% end %>
-  <div id="twitchPlayer"></div>
+<div id="twitchPlayer"></div>
 
-  <form id="searchForm">
-    <input type="text" id="search" placeholder="Enter the name of the player you want to stream"/>
-    <input type="button" id="searchForm" value="Search"/>
-  </form>
+<form id="searchForm">
+  <input type="text" id="search" placeholder="Enter the name of the player you want to stream"/>
+  <input type="submit" value="Search" />
+</form>
 
 
-  <!-- TWITCH API USAGE  -->
-  <!-- ============================================ -->
-  <script src= "http://player.twitch.tv/js/embed/v1.js"></script>
-  <script type="text/javascript">
-    var options = {
-      width: 854,
-      height: 480,
-      channel: "imaqtpie"       
-    };
+
+<!-- TWITCH API USAGE  -->
+<!-- ============================================ -->
+<script src= "http://player.twitch.tv/js/embed/v1.js"></script>
+<script type="text/javascript">
+
+  var options = {
+    width: 854,
+    height: 480,
+    channel: "imaqtpie"       
+  };
+  
+  $(document).ready(function(){
     var player = new Twitch.Player("twitchPlayer", options);
     player.setVolume(0.5);
     $("#searchForm").submit(function(event){
       event.preventDefault();
       var selection = $("#search").val();
-      console.log(selection);
       player.setChannel(selection);
+      $("#post_channel").val(selection);
     })
+  })
 
-  </script>
+</script>
 
-  <!-- ================================================ -->
-  <%= simple_form_for @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :subject %>
-  <%=  f.hidden_field :channel %>
-  <%= f.button :submit %>
-  <% end %>
-  <% end %>
-</div>
+<!-- ================================================ -->
+
+
+<%= simple_form_for @post do |f| %>
+<%= f.label :title %>
+<%= f.text_field :subject %>
+<%= f.hidden_field :channel %>
+<%= f.button :submit %>
+<% end %>

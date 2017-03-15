@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :set_post, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @posts = Post.all
@@ -30,6 +30,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    
     @post.destroy
     redirect_to posts_path
   end

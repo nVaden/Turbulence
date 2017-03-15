@@ -1,7 +1,10 @@
+<% if user_signed_in? %>
+
 <nav>
 	<ul>
-		<li><a href="/">Casa</a></li>
-		<li><a href="/posts/new">Posts</a></li>
+		<li><a href="/">Show All</a></li>
+		<li><a href="/posts/new">Create</a></li>
+		<li><a href="/users/edit">Settings</a></li>
 		<li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
 	</ul>
 	<div class="button">
@@ -10,27 +13,15 @@
 </nav>
 <div class="overlay">
 	<div class="wrap">
-		<ul class="wrap-nav">  
-			<li><a href="/">Profile</a>
-				<ul>
-					<li><a href="/">Profile Page</a></li>
-					<li><a href="/users/edit">Edit Account</a></li>
-					<li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-				</ul>
-			</li>
-			<li><a href="/">Posts</a>
-				<ul>
-					<li><a href="/">All Posts</a></li>
-					<li><a href="/posts/new">New</a></li>
-				</ul>
-			</li>
-			<li><a href="#">About</a>
-				<ul>
-					<li><a href="#">Development</a></li>
-					<li><a href="#">Goals</a></li>
-				</ul>
-			</li>
+		<ul class="wrap-nav"> 
+			<h4> 
+				Skills used:
+				<div class="pre"> JavaScript, jQuery, Ruby on Rails, Skeleton, HTML5, CSS3, and Bourbon	</div>
+
+			</h4>
 		</ul>
+		<h5 class="nav_name">By: Nicholas Vaden</h5>
+		<h6>Shout out to Camerican and Oliverography </h6>
 		<div class="social">
 			<a href="http://facebook.com/nvaden1">
 				<div class="social-icon">
@@ -50,3 +41,6 @@
 		</div>
 	</div>
 </div>
+		<% else %>
+
+		<% end %>
