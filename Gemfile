@@ -27,12 +27,13 @@ gem 'bourbon'
 
 gem "paperclip", "~> 4.2"
 
-gem 'skeleton-rails'
-
 gem 'simple_form'
 
 gem 'twitch', '~> 0.1.0'
 
+gem 'faye'
+
+gem 'sync'
 # group :doc do
 #   # bundle exec rake doc:rails generates the API under doc/api.
 #   gem 'sdoc', require: false

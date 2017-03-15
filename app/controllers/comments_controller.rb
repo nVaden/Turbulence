@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, :set_comment, only: [:show, :edit, :update, :destroy, :create]
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @comments = Comment.all
-    respond_with(@comments)
+    respond_with(@comment)
   end
 
   def show
@@ -33,14 +33,14 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(comment_params)
-    respond_with(@comment)
+   
   end
 
   def destroy
     @comment = @post.comments.find(params[:id])
     @comment.destroy
     flash[:success] = "Git out of here comment!"
-    redirect_to  root_path
+    redirect_to root_path
   end
 
   private

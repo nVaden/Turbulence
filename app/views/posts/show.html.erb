@@ -1,61 +1,74 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-	<strong>Title:</strong>
-	<%= @post.subject %>
-</p>
-
-<div class="comment_form">
-	<%= simple_form_for [@post, @post.comments.new] do |f| %>
-
-	<iframe
-	src="http://player.twitch.tv/?channel=dallas&muted=true"
-	height="800"
-	width="1280"
-	frameborder="0"
-	scrolling="no"
-	allowfullscreen="true">
-</iframe>
+<!-- For Twitch API -->
+<script src= "http://player.twitch.tv/js/embed/v1.js"></script>
 
 
-<!-- This is the added javscript for the Twitch API -->
-<!--=================================================== -->
-  <script type="text/javascript">
-    var options = {
-      width: 854,
-      height: 480,
-      channel: "imaqtpie"
-    };
-    var player = new Twitch.Player("twitchPlayer", options);
-    player.setVolume(0.5);
 
-</script>
+<div class="row">
+	<div class="one third columns " id="twitchPlayer"></div>
 
-<!-- ================================================ -->
-<!-- Back to HTML -->
-<%= f.input :content, :label => "Comment:", placeholder: 'Add a comment' %>
-<%= f.input :image %>
-<%= f.button :submit %>
-<% end %>
-</div>
-
-<!-- Showing all comments =-=-=-=-=-=-=-=-=-=-=-=-=	 -->
-<div class="comment_view">
-	<% @post.comments.reverse.each do |f| %>
-	<div id="commentEach">
-		<div id="commentContent">
-			<%= f.content %>
+	<div class="comment_whole">
+		<div class="comment_title">
+			<p>
+				<strong>Title:</strong>
+				<%= @post.subject %>
+			</p>
 		</div>
-		posted <%= time_ago_in_words(f.created_at||Time.now) %> ago.
+
+		<div class="comment_form">
+			<%= simple_form_for [@post, @post.comments.new] do |f| %>
+			<%= f.input :content, :label => "Comment:", placeholder: 'Add a comment' %>
+			<%= f.button :submit %>
+			<% end %>
+		</div>
+
+		<!-- Showing all comments =-=-=-=-=-=-=-=-=-=-=-=-=	 -->
+
+
+		<div class="comment_view">
+			   <% @post.comments.reverse.each_with_index do |f,index|
+			   		next unless f.content
+			    %>
+			   			<div id="commentEach">
+
+				<div id="commentContent">
+
+					<div class="username_all"><%= f.user.username %>:</div>
+
+					 "<%= f.content %>"
+				</div>
+
+				posted <%= time_ago_in_words(f.created_at || Time.now) %> ago.
+
+			</div>
+
+			<% end %>
+
+			<% if @post.user.id == current_user.id %>
+
+
+			<%= link_to 'Back', posts_path %>
+			<%= link_to 'Delete', post_path, method: :delete %>
+			<% else %>
+			<%= link_to 'Back', posts_path %>
+			<% end %>
+		</div>
 	</div>
-	<% end %>
-	<% if @post.user.id == current_user.id %>
-
-	
-	<%= link_to 'Back', posts_path %>
-	<%= link_to 'Delete', posts_path %>
-	<% else %>
-	<%= link_to 'Back', posts_path %>
 
 
-	<% end %>
+	<p id="notice"><%= notice %></p>
+
+
+	<!-- This is the added javscript for the Twitch API -->
+	<!--=================================================== -->
+
+	<script type="text/javascript">
+		var options = {
+			width: 925,
+			height: 650,
+			channel: "<%= @post.channel || imaqtpie %>"
+		};
+		var player = new Twitch.Player("twitchPlayer", options);
+		player.setVolume(0.5);
+
+	</script>

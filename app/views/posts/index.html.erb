@@ -1,53 +1,54 @@
-        <h1 align="center">Stream Board</h1>
-      <div class="stream_board">
+        <% if user_signed_in? %>
+        
+        <h1 class="font_title" align="center">Stream Board</h1>
+        <div class="stream_board" align="center">
 
-      <iframe
-    src="http://player.twitch.tv/?channel=dallas&muted=true"
-    height="720"
-    width="1280"
-    frameborder="0"
-    scrolling="no"
-    allowfullscreen="true">
-</iframe>
-
-        <table>
-          <thead>
+          <table class="font_all" align="center">
+            <thead>
             <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @posts.reverse.each do |post| %>
-            <tr>
-              <td><%= image_tag post.user.image.url(:thumb) %></td>
-              <td><%= post.user.username %></td>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @posts.reverse.each do |post| %>
+              <%= link_to post do %>
+              <tr>
 
-              <td><%= post.subject %></td>
+                <td><div class="avatar_image"><%= image_tag post.user.image.url(:thumb) %></div></td>
+                <td><div class="username_index font_all">[<%= post.user.username %>]</div></td>
 
-              <td>posted <%= time_ago_in_words(post.created_at||Time.now) %> ago.</td>
+                <td>"<%= post.subject %>"</td>
 
-              <% if current_user && post.user.id == current_user.id %>
-              <td><%= link_to 'Show', post %></td>
+                <td>posted <%= time_ago_in_words(post.created_at||Time.now) %> ago.</td>
 
-              <td><%= link_to 'Edit', edit_post_path(post) %></td>
+                <% if current_user && post.user.id == current_user.id %>
 
-              <% else %>
+                <td><%= link_to 'Show', post %></td>
 
-              <td><%= link_to 'Show', post %></td>
+                <td><%= link_to 'Edit', edit_post_path(post) %></td>
 
+                <% else %>
+
+                <td><%= link_to 'Show', post %></td>
+
+                <% end %>
+
+              </tr>
               <% end %>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
+              <% end %>
+            </tbody>
+          </table>
 
-      </div>
+        </div>
 
-      <br>
-      <!-- </div> -->
+        <br>
+        <!-- </div> -->
+        <% else %>
+        <%= render 'home/index' %>
+        <% end %>
 
