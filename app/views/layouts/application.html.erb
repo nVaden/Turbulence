@@ -10,24 +10,26 @@
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %>
 		<%= favicon_link_tag 'logo.png' %>
+		<%= javascript_include_tag '//media.twiliocdn.com/sdk/rtc/js/ip-messaging/v0.8/twilio-ip-messaging.min.js' %> 
+
 	</head>
 	<body>
 		<!-- Layout push navbar -->
 		<div class="font_all">
-		<%= render 'layouts/navbar' %>
-		 <%= video_tag "bgvideo.mp4", :id => "main-video-background", :autoplay => true, :loop => true, :muted => true %>
-		 <%= video_tag "rainy.mp4", :class => "home-video-background", :autoplay => true, :loop => true, :muted => true %>
-		<!-- Section for loading animation JS -->
-		<div id="loader-wrapper">
-			<div id="loader"></div>
-			<div class="loader-section section-left"></div>
-			<div class="loader-section section-right"></div>
-		</div>
-		
-		<!-- Page introduction -->
-		<div id="container u-full-width">
-			<%= yield %>
-		</div>
+			<%= render 'layouts/navbar' %>
+			<%= video_tag "bgvideo.mp4", :id => "main-video-background", :autoplay => true, :loop => true, :muted => true %>
+			<%= video_tag "rainy.mp4", :class => "home-video-background", :autoplay => true, :loop => true, :muted => true %>
+			<!-- Section for loading animation JS -->
+			<div id="loader-wrapper">
+				<div id="loader"></div>
+				<div class="loader-section section-left"></div>
+				<div class="loader-section section-right"></div>
+			</div>
+
+			<!-- Page introduction -->
+			<div id="container u-full-width">
+				<%= yield %>
+			</div>
 		</div>
 	</body>	
 	</html>	

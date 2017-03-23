@@ -5,70 +5,34 @@
 
 
 <div class="row">
-	<div class="one third columns " id="twitchPlayer"></div>
+	<div class="one third columns" id="twitchPlayer"></div>
 
 	<div class="comment_whole">
-		<div class="comment_title">
+		<div class=" offset-by-five seven columns">
+			<h3>Welcome <%= current_user.username %> </h3>
 			<p>
 				<strong>Title:</strong>
 				<%= @post.subject %>
 			</p>
-		</div>
-
-		<div class="comment_form">
-			<%= simple_form_for [@post, @post.comments.new] do |f| %>
-			<%= f.input :content, :label => "Comment:", placeholder: 'Add a comment' %>
-			<%= f.button :submit %>
-			<% end %>
-		</div>
-
-		<!-- Showing all comments =-=-=-=-=-=-=-=-=-=-=-=-=	 -->
-
-
-		<div class="comment_view">
-			   <% @post.comments.reverse.each_with_index do |f,index|
-			   		next unless f.content
-			    %>
-			   			<div id="commentEach">
-
-				<div id="commentContent">
-
-					<div class="username_all"><%= f.user.username %>:</div>
-
-					 "<%= f.content %>"
-				</div>
-
-				posted <%= time_ago_in_words(f.created_at || Time.now) %> ago.
-
-			</div>
-
-			<% end %>
-
-			<% if @post.user.id == current_user.id %>
-
-
-			<%= link_to 'Back', posts_path %>
-			<%= link_to 'Delete', post_path, method: :delete %>
-			<% else %>
-			<%= link_to 'Back', posts_path %>
-			<% end %>
+			<div id="messages"></div>
+			<input id="chat-input" class="form-control" type="text" placeholder="say anything" autofocus/>
 		</div>
 	</div>
+</div>
 
 
-	<p id="notice"><%= notice %></p>
 
 
-	<!-- This is the added javscript for the Twitch API -->
-	<!--=================================================== -->
+<!-- This is the added javscript for the Twitch API -->
+<!--=================================================== -->
 
-	<script type="text/javascript">
-		var options = {
-			width: 925,
-			height: 650,
-			channel: "<%= @post.channel || imaqtpie %>"
-		};
-		var player = new Twitch.Player("twitchPlayer", options);
-		player.setVolume(0.5);
+<script type="text/javascript">
+	var options = {
+		width: 925,
+		height: 650,
+		channel: "<%= @post.channel || imaqtpie %>"
+	};
+	var player = new Twitch.Player("twitchPlayer", options);
+	player.setVolume(0.5);
 
-	</script>
+</script>
