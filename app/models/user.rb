@@ -1,5 +1,7 @@
+
 class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
+  # needs to be more specific
   has_many :comments, dependent: :destroy
   validates :username, presence: true
   has_attached_file :image, styles: { :medium => "640x", :thumb => "100x100" }
