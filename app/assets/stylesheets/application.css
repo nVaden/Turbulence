@@ -15,7 +15,7 @@
  #messages {
   height: 300px;
   overflow: scroll;
-  border: 1px solid #ddd
+  border: 1px solid #ddd;
 }
 
 .font_all {
@@ -330,7 +330,7 @@ nav ul li a:hover {
   width:100%;
   margin-top:200px;
   font-size:20px;
-  color#333;
+  color: #333;
   text-align: center;
 } 
 
