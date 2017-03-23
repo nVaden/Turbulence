@@ -11,17 +11,24 @@
  *= require_self
  *= require_tree .
  */
+
+ #messages {
+  height: 300px;
+  overflow: scroll;
+  border: 1px solid #ddd
+}
+
 .font_all {
   font-family: 'Averia Grusa Libre', sans-serif;
 }
- .font_title {
+.font_title {
   font-family: 'Montserrat Subrayada', sans-serif;
- }
+}
 
 .move_down {
   margin-top:10%;
 }
- .avatar_image {
+.avatar_image {
   border-radius: 5%;
   border: 1px solid white;
 }
@@ -81,8 +88,8 @@ article {
 #intro {
  position: absolute;
  top:25%;
-width:100%;
-margin-left:765px;
+ width:100%;
+ margin-left:765px;
 }
 #home_name {
   position: absolute;
