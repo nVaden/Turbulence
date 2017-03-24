@@ -12,10 +12,15 @@
  *= require_tree .
  */
 
+#show_name {
+  color: rgb(255,175,175);
+}
+
  #messages {
   height: 300px;
   overflow: scroll;
   border: 1px solid #ddd;
+  background-color: rgba(50,10,10,.5);
 }
 
 .font_all {
@@ -75,6 +80,7 @@
   opacity:.1;
 }
 
+
 /* These just style the content */
 article {
   position: absolute;
@@ -87,9 +93,9 @@ article {
 }
 #intro {
  position: absolute;
- top:25%;
+ top:45%;
  width:100%;
- margin-left:765px;
+ margin-left: 680px;
 }
 #home_name {
   position: absolute;

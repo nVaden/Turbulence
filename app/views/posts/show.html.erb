@@ -8,12 +8,14 @@
 	<div class="one third columns" id="twitchPlayer"></div>
 
 	<div class="comment_whole">
-		<div class=" offset-by-five seven columns">
-			<h3>Welcome <%= current_user.username %> </h3>
-			<p>
-				<strong>Title:</strong>
-				<%= @post.subject %>
-			</p>
+		<div class=" offset-by-three seven columns">
+			<h3>Welcome
+				<div id="show_name">
+					<%= current_user.username %> !
+				</div>
+			</h3>
+			<strong>Title:</strong>
+			<%= @post.subject %>
 			<div id="messages"></div>
 			<input id="chat-input" class="form-control" type="text" placeholder="say anything" autofocus/>
 		</div>
