@@ -12,6 +12,10 @@
  *= require_tree .
  */
 
+.friend_board {
+  color:white;
+}
+
 #show_name {
   color: rgb(255,175,175);
 }

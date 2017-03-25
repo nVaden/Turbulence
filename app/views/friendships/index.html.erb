@@ -1,0 +1,26 @@
+<h1>Listing friendships</h1>
+<div class="friend_board">
+  <table>
+    <thead>
+      <tr>
+        <th>Friends</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @friendships.reverse.each do |friendship| %>
+      <tr>
+        <td><%= image_tag friendship.user.image.url(:thumb) %></td>
+        <td><%= friendship.user.username %></td>
+        <td><%= link_to 'Remove', friendship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+
+  <br>
+
+  <%= link_to 'New Friendship', new_friendship_path %>

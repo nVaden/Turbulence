@@ -1,0 +1,11 @@
+<%= simple_form_for(@friendship) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.select :friend_id, User.pluck(:username), { multiple: true } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
