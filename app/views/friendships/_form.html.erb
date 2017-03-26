@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.select :friend_id, User.pluck(:username), { multiple: true } %>
+    <%= f.association :friend, collection: User.all, :label_method => :username, :value_method => :id %>
   </div>
 
   <div class="form-actions">

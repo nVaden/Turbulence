@@ -1,54 +1,43 @@
         <% if user_signed_in? %>
         
         <h1 class="font_title" align="center">Stream Board</h1>
-        <div class="stream_board" align="center">
 
-          <table class="font_all" align="center">
-            <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @posts.reverse.each do |post| %>
-              <%= link_to post do %>
-              <tr>
 
-                <td><div class="avatar_image"><%= image_tag post.user.image.url(:thumb) %></div></td>
-                <td><div class="username_index font_all">[<%= post.user.username %>]</div></td>
 
-                <td>"<%= post.subject %>"</td>
 
-                <td>posted <%= time_ago_in_words(post.created_at||Time.now) %> ago.</td>
 
-                <% if current_user && post.user.id == current_user.id %>
+        <% @posts.reverse.each do |post| %>
+        <%= link_to post do %>
 
-                <td><%= link_to 'Show', post %></td>
+        <div class="stream_board">
+          <div class="avatar_image font_all"><%= image_tag post.user.image.url(:thumb) %>
+           <strong>"<%= post.subject %>"~</strong>
+           posted <%= time_ago_in_words(post.created_at||Time.now) %> ago.
+         </div>
+         <div class="username_index font_all"><%= post.user.username %></div>
 
-                <td><%= link_to 'Edit', edit_post_path(post) %></td>
+         <% if current_user && post.user.id == current_user.id %>
 
-                <% else %>
 
-                <td><%= link_to 'Show', post %></td>
 
-                <% end %>
+         <%= link_to 'Edit', edit_post_path(post) %>
+       </div>
+       <% else %>
 
-              </tr>
-              <% end %>
-              <% end %>
-            </tbody>
-          </table>
 
-        </div>
+       <% end %>
+     </div>
 
-        <br>
-        <!-- </div> -->
-        <% else %>
-        <%= render 'home/index' %>
-        <% end %>
+     <% end %>
+     <% end %>
+
+
+
+
+
+     <br>
+     <!-- </div> -->
+     <% else %>
+     <%= render 'home/index' %>
+     <% end %>
 

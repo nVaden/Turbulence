@@ -1,9 +1,9 @@
-<h1>Listing friendships</h1>
-<div class="friend_board">
+<h1>Friends:</h1>
+<div class="friend_board" align="center">
   <table>
     <thead>
       <tr>
-        <th>Friends</th>
+        <th></th>
         <th></th>
         <th></th>
       </tr>
@@ -12,15 +12,16 @@
     <tbody>
       <% @friendships.reverse.each do |friendship| %>
       <tr>
-        <td><%= image_tag friendship.user.image.url(:thumb) %></td>
-        <td><%= friendship.user.username %></td>
+        <td><%= image_tag friendship.friend.image.url(:thumb) %></td>
+        <td><%= friendship.friend.username %></td>
         <td><%= link_to 'Remove', friendship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-  </div>
+
 
   <br>
 
-  <%= link_to 'New Friendship', new_friendship_path %>
+  <%= link_to 'Add friend', new_friendship_path %>
+</div>
