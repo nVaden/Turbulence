@@ -1,7 +1,9 @@
 Turbulence::Application.routes.draw do
 
   resources :friendships
+
   resources :posts do
+    # Document
     resources :comments
   end
 

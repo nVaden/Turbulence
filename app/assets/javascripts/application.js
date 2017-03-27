@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require 'aws-sdk'
 //= require_tree .
 
 // Toggle for Nav Menu ======
