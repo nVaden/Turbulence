@@ -27,7 +27,7 @@ gem 'envyable'
 
 gem 'bourbon'
 
-gem "paperclip", "~> 4.2.1"
+# gem "paperclip", "~> 4.2.1"
 
 gem 'simple_form'
 
