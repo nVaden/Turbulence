@@ -35,5 +35,4 @@ gem 'twilio-ruby'
 
 gem 'twitch', '~> 0.1.0'
 
-gem 'aws-sdk', '~> 2.0'
-
+gem 'aws-sdk', '~> 2'
