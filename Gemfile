@@ -27,7 +27,7 @@ gem 'envyable'
 
 gem 'bourbon'
 
-gem "paperclip", "~> 4.2"
+gem "paperclip", "~> 4.2.1"
 
 gem 'simple_form'
 
@@ -35,4 +35,4 @@ gem 'twilio-ruby'
 
 gem 'twitch', '~> 0.1.0'
 
-gem 'aws-sdk'
+gem 'aws-sdk', '~> 2.3'
