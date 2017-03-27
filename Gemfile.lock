@@ -155,7 +155,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk (~> 2)
+  aws-sdk (~> 2.2, >= 2.2.35)
   bourbon
   coffee-rails (~> 4.0.0)
   devise
