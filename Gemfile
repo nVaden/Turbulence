@@ -10,12 +10,11 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'coffee-rails', '~> 4.0.0'
 
-
-# gem 'sqlite3'
-group :production do
-	gem 'rails_12factor'
-	gem 'pg'
-end
+gem 'sqlite3'
+# group :production do
+# 	gem 'rails_12factor'
+# 	gem 'pg'
+# end
 
 gem 'jquery-rails'
 
