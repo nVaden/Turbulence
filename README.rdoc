@@ -5,6 +5,7 @@
 ~ Ruby 2.2.6 / Rails 4.0.0
 
 ~ Skeleton / Bourbon / jQuery / SASS
+
 ~ JavaScript / HTML5 / CSS3
 
 ~ Twitch API / Twilio API
